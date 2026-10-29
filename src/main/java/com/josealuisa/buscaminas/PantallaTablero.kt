@@ -133,8 +133,27 @@ fun CasillaView(c: Char, modifier: Modifier = Modifier) {
         modifier = modifier
             .aspectRatio(1f)
             .clip(RoundedCornerShape(6.dp))
-            .background(fondo)
-    )
+            .background(fondo),
+        contentAlignment = Alignment.Center
+    ) {
+        when {
+            c == 'F' -> Text("🚩", fontSize = 18.sp)
+            c == '*' -> Text("💣", fontSize = 18.sp)
+            c.isDigit() -> Text(
+                text = c.toString(),
+                color = colorNumero(c),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+    }
+}
+
+private fun colorNumero(c: Char): Color = when (c) {
+    '1' -> Color(0xFF1E88E5)
+    '2' -> Color(0xFF43A047)
+    '3' -> Color(0xFFE53935)
+    else -> Color(0xFF8E24AA)
 }
 
 @Preview(showBackground = true)
