@@ -15,6 +15,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,6 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -60,6 +64,10 @@ fun PantallaTablero() {
         BarraSuperior()
         Spacer(Modifier.height(20.dp))
         Tablero()
+        Spacer(Modifier.height(24.dp))
+        ControlesInferiores()
+        Spacer(Modifier.weight(1f))
+        Creditos()
     }
 }
 
@@ -154,6 +162,44 @@ private fun colorNumero(c: Char): Color = when (c) {
     '2' -> Color(0xFF43A047)
     '3' -> Color(0xFFE53935)
     else -> Color(0xFF8E24AA)
+}
+
+@Composable
+fun ControlesInferiores() {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            listOf("Fácil", "Medio", "Difícil").forEach { nivel ->
+                OutlinedButton(
+                    onClick = { },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(nivel, color = Color.White)
+                }
+            }
+        }
+        Spacer(Modifier.height(12.dp))
+        Button(
+            onClick = { },
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFFFC107),
+                contentColor = Color.Black
+            )
+        ) {
+            Text("Nueva partida")
+        }
+    }
+}
+
+@Composable
+fun Creditos() {
+    Text(
+        text = "Realizado por José Enrique Aluisa Ortega",
+        color = Color(0xFF9AA5B1),
+        fontSize = 13.sp,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.fillMaxWidth()
+    )
 }
 
 @Preview(showBackground = true)
